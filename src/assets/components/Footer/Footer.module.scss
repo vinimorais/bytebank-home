@@ -1,0 +1,71 @@
+.footer {
+  position: fixed; 
+  bottom: 0;  
+  left: 0;  
+  width: 100%;  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;  
+  background-color: black;
+  color: white;
+  font-family: Arial, sans-serif;
+  height: 224px;  
+  padding: 20px 30px;  /* Ajustando o padding */
+  z-index: 1000;  
+  box-sizing: border-box; /* Garantindo que o padding não sobrecarregue o layout */
+  flex-wrap: wrap; /* Permite que as colunas quebrem para a linha seguinte se necessário */
+}
+
+.footerSection {
+  flex: 1;
+  margin: 0 20px;
+  min-width: 200px; /* Definindo uma largura mínima para garantir que as colunas não fiquem tão pequenas */
+}
+
+.footerSection h4 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  padding-bottom: 5px;
+}
+
+.footerSection ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footerSection li {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.lastFooterSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center; 
+  text-align: center; 
+  flex: 1; /* Garantir que a última seção tenha o mesmo comportamento flexível */
+  min-width: 200px; /* Largura mínima para a última coluna */
+}
+
+.lastFooterSection h4 {
+  margin-bottom: 20px; 
+}
+
+.bytebankLogo img {
+  width: 100px;
+  margin-bottom: 15px;
+}
+
+.socialIcons {
+  display: flex;
+  gap: 15px;
+}
+
+.socialIcons img {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}

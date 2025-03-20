@@ -1,0 +1,15 @@
+FROM node:18.20 
+
+WORKDIR /apps 
+
+COPY package*.json . 
+
+RUN npm install 
+
+COPY . . 
+
+EXPOSE 8200 
+
+ENTRYPOINT ["npm"]
+
+CMD ["start", "--", "--port", "8200"]

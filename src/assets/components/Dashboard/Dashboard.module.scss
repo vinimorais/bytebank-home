@@ -1,0 +1,174 @@
+// Cores
+$primary-color: #00414D;
+$background-color: #E8F0E8;
+$text-color: #ffffff;
+$card-bg: #f3f3f3;
+$positive: #008000;
+$negative: #FF0000;
+
+// Layout geral
+.dashboard {
+  min-height: 100vh;
+  background: $background-color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+// Top Bar
+.topBar {
+  background: $primary-color;
+  padding: 1rem;
+  color: $text-color;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.userIcon {
+  width: 2rem;
+  height: 2rem;
+  background: gray;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Layout principal centralizado
+.content {
+  display: flex;
+  width: 80%;
+  max-width: 1200px;
+  flex-grow: 1;
+  margin: 2rem auto;
+}
+
+// Sidebar
+.sidebar {
+  width: 20%;
+  background: white;
+  padding: 1.5rem;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  color: gray;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.sidebar .active {
+  color: $positive;
+  font-weight: bold;
+}
+
+// Conteúdo principal ajustado
+.mainContent {
+  width: 60%;
+  padding: 0 1.5rem;
+}
+
+.balanceCard {
+  background: $primary-color;
+  color: $text-color;
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+}
+
+.balanceHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.balance {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.transactionCard {
+  background: $card-bg;
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+}
+
+.transactionCard h2 {
+  color: gray;
+  margin-bottom: 1rem;
+}
+
+.transactionCard select,
+.transactionCard input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.transactionCard button {
+  background: $primary-color;
+  color: $text-color;
+  padding: 0.75rem;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+// Extrato ajustado
+.statement {
+  width: 20%;
+  background: white;
+  padding: 1.5rem;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.statementHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.statementList {
+  border-top: 1px solid #ddd;
+  padding-top: 1rem;
+}
+
+.statementItem {
+  margin-bottom: 1rem;
+}
+
+.month {
+  color: $positive;
+  font-size: 0.9rem;
+}
+
+.type {
+  color: gray;
+  font-size: 0.9rem;
+}
+
+.amount {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.amount.positive {
+  color: $positive;
+}
+
+.amount.negative {
+  color: $negative;
+}

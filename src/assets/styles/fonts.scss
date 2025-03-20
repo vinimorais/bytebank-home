@@ -1,0 +1,15 @@
+/* fonts.css */
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400;500&display=swap');
+
+:root {
+  --font-geist-sans: 'Geist', sans-serif;
+  --font-geist-mono: 'Geist Mono', monospace;
+}
+
+.geistSans {
+  font-family: var(--font-geist-sans);
+}
+
+.geistMono {
+  font-family: var(--font-geist-mono);
+}
