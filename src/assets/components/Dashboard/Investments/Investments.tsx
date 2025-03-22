@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { PieChart, Pie, Cell, Tooltip } from "recharts";
-import styles from "../Dashboard.module.scss"; 
+import styles from "../Dashboard.module.scss";
 
 const dataMock = {
   total: 50000,

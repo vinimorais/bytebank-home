@@ -3,10 +3,10 @@ import { Route } from "react-router-dom";
 import { isTokenValid } from "../../../services/authService";
 import LoginModal from "../../components/Login/Login";
 
-const PrivateRoute: React.FC<{ component: React.ComponentType<any>; path: string }> = ({
-  component: Component,
-  ...rest
-}) => {
+const PrivateRoute: React.FC<{
+  component: React.ComponentType<any>;
+  path: string;
+}> = ({ component: Component, ...rest }) => {
   const [isLoginOpen, setIsLoginOpen] = useState(!isTokenValid());
 
   return (

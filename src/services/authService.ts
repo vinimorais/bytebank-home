@@ -7,7 +7,10 @@ interface AuthResponse {
   };
 }
 
-export const authenticateUser = async (email: string, password: string): Promise<string> => {
+export const authenticateUser = async (
+  email: string,
+  password: string
+): Promise<string> => {
   try {
     const response = await fetch(`${API_URL}/auth`, {
       method: "POST",
@@ -39,8 +42,8 @@ export const isTokenValid = (): boolean => {
   if (!token) return false;
 
   try {
-    const payload = JSON.parse(atob(token.split(".")[1])); 
-    return payload.exp * 1000 > Date.now(); 
+    const payload = JSON.parse(atob(token.split(".")[1]));
+    return payload.exp * 1000 > Date.now();
   } catch (error) {
     console.error("Erro ao validar token:", error);
     return false;
@@ -52,13 +55,12 @@ export const logout = () => {
   window.location.href = "/login";
 };
 
-
 export const getUserName = (): string | null => {
   const token = getToken();
   if (!token) return null;
 
   try {
-    const payload = JSON.parse(atob(token.split(".")[1])); 
+    const payload = JSON.parse(atob(token.split(".")[1]));
     return payload.username || null;
   } catch (error) {
     console.error("Erro ao decodificar token:", error);
@@ -66,18 +68,17 @@ export const getUserName = (): string | null => {
   }
 };
 
-
 export const fetchUserProfile = async () => {
   const token = getToken();
   if (!token) throw new Error("Usuário não autenticado");
 
   const response = await fetch(`${API_URL}/me`, {
     headers: {
-      "Authorization": `Bearer ${token}`
-    }
+      Authorization: `Bearer ${token}`,
+    },
   });
 
   if (!response.ok) throw new Error("Erro ao buscar perfil do usuário");
-  
+
   return await response.json();
 };

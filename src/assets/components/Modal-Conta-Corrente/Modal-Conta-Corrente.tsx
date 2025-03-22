@@ -1,7 +1,7 @@
 import React, { forwardRef, useImperativeHandle, useState } from "react";
 import styles from "./Modal-Conta-Corrente.module.scss";
-import IlustracaoLogin from '../../../../public/Ilustração_Login.svg';
-import { createUser } from '../../../services/user.service';
+import IlustracaoLogin from "../../../../public/Ilustração_Login.svg";
+import { createUser } from "../../../services/user.service";
 
 interface ModalProps {
   onClose: () => void;
@@ -68,8 +68,14 @@ const Modal = forwardRef<ModalHandle, ModalProps>(({ onClose }, ref) => {
         <button className={styles.closeButton} onClick={onClose}>
           &times;
         </button>
-        <img className={styles.img} src={IlustracaoLogin} alt="Imagem de login" />
-        <h2 className={styles.h2}>Preencha os campos abaixo para criar sua conta corrente!</h2>
+        <img
+          className={styles.img}
+          src={IlustracaoLogin}
+          alt="Imagem de login"
+        />
+        <h2 className={styles.h2}>
+          Preencha os campos abaixo para criar sua conta corrente!
+        </h2>
         <form className={styles.form} onSubmit={handleSubmit}>
           <label>Nome</label>
           <input
@@ -82,7 +88,9 @@ const Modal = forwardRef<ModalHandle, ModalProps>(({ onClose }, ref) => {
           />
           <label>Email</label>
           <input
-            className={`${styles.input} ${!isEmailValid ? styles.inputInvalid : ""}`}
+            className={`${styles.input} ${
+              !isEmailValid ? styles.inputInvalid : ""
+            }`}
             type="email"
             placeholder="Digite seu email"
             value={email}
@@ -107,7 +115,8 @@ const Modal = forwardRef<ModalHandle, ModalProps>(({ onClose }, ref) => {
               onChange={() => setTermsAccepted(!termsAccepted)}
             />
             <label htmlFor="privacy">
-              Li e estou ciente quanto às condições de tratamento dos meus dados conforme descrito na Política de Privacidade do banco.
+              Li e estou ciente quanto às condições de tratamento dos meus dados
+              conforme descrito na Política de Privacidade do banco.
             </label>
           </div>
           <button

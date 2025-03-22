@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../Dashboard.module.scss"
+import styles from "../Dashboard.module.scss";
 
 interface SidebarProps {
   activeTab: string;
@@ -7,7 +7,12 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
-  const menuItems = ["Início", "Transferências", "Investimentos", "Outros serviços"];
+  const menuItems = [
+    "Início",
+    "Transferências",
+    "Investimentos",
+    "Outros serviços",
+  ];
 
   return (
     <div className={styles.sidebar}>

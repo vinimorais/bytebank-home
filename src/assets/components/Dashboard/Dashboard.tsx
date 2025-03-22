@@ -4,7 +4,7 @@ import Sidebar from "./Sidebar/Sidebar";
 import BalanceCard from "./BalanceCard/BalanceCard";
 import Investments from "./Investments/Investments";
 import Statement from "./Statement/Statement";
-import Main from "../Main-Page/MainPage"
+import Main from "../Main-Page/MainPage";
 import { useAuth } from "../../hooks/useAuth";
 
 const Dashboard: React.FC = () => {

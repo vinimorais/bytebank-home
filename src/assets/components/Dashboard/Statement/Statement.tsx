@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "../Dashboard.module.scss"; 
+import styles from "../Dashboard.module.scss";
 import { fetchStatement } from "../../../../services/statement";
 type Transaction = {
   id: string;

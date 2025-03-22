@@ -1,36 +1,36 @@
-import React, { useState } from 'react';
-import { createTransaction } from '../../../services/transaction';
-import './MainPage.scss';
+import React, { useState } from "react";
+import { createTransaction } from "../../../services/transaction";
+import "./MainPage.scss";
 
 const MainPage: React.FC = () => {
-  const [transactionType, setTransactionType] = useState('');
-  const [amount, setAmount] = useState('');
+  const [transactionType, setTransactionType] = useState("");
+  const [amount, setAmount] = useState("");
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setMessage('');
+    setMessage("");
 
     const transactionData = {
-      accountId: '67607133f840bb97892eb659',
+      accountId: "67607133f840bb97892eb659",
       type: transactionType,
       value: Number(amount),
-      from: 'Usuário A',
-      to: 'Usuário B',
-      anexo: 'Sem anexo',
+      from: "Usuário A",
+      to: "Usuário B",
+      anexo: "Sem anexo",
     };
 
     try {
       const data = await createTransaction(transactionData);
       setMessage(`Transação criada! ID: ${data.id}`);
     } catch {
-      setMessage('Erro ao enviar transação.');
+      setMessage("Erro ao enviar transação.");
     } finally {
       setLoading(false);
-      setTransactionType('');
-      setAmount('');
+      setTransactionType("");
+      setAmount("");
     }
   };
 
@@ -61,7 +61,7 @@ const MainPage: React.FC = () => {
           />
 
           <button type="submit" disabled={loading}>
-            {loading ? 'Processando...' : 'Concluir transação'}
+            {loading ? "Processando..." : "Concluir transação"}
           </button>
         </form>
 

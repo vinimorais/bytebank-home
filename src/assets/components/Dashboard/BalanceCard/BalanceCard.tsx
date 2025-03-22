@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "../Dashboard.module.scss"
+import styles from "../Dashboard.module.scss";
 import { useAuth } from "../../../hooks/useAuth";
 
 const BalanceCard: React.FC = () => {
@@ -12,9 +12,7 @@ const BalanceCard: React.FC = () => {
       <div className={styles.balanceHeader}>
         <span>Saldo</span>
       </div>
-      <p className={styles.balance}>
-        {showBalance ? "R$ 2.500,00" : "******"}
-      </p>
+      <p className={styles.balance}>{showBalance ? "R$ 2.500,00" : "******"}</p>
     </div>
   );
 };
