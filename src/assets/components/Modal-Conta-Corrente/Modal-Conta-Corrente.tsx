@@ -1,6 +1,8 @@
 import React, { forwardRef, useImperativeHandle, useState } from "react";
 import styles from "./Modal-Conta-Corrente.module.scss";
-import IlustraçãoLogin from '../../../../public/Ilustração_Login.svg'
+import IlustracaoLogin from '../../../../public/Ilustração_Login.svg';
+import { createUser } from '../../../services/user.service';
+
 interface ModalProps {
   onClose: () => void;
 }
@@ -8,12 +10,6 @@ interface ModalProps {
 interface ModalHandle {
   open: () => void;
   close: () => void;
-}
-
-interface User {
-  email: string;
-  password: string;
-  name?: string;
 }
 
 const Modal = forwardRef<ModalHandle, ModalProps>(({ onClose }, ref) => {
@@ -39,7 +35,7 @@ const Modal = forwardRef<ModalHandle, ModalProps>(({ onClose }, ref) => {
     setIsEmailValid(emailPattern.test(value));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!termsAccepted) {
@@ -52,16 +48,15 @@ const Modal = forwardRef<ModalHandle, ModalProps>(({ onClose }, ref) => {
       return;
     }
 
-    const users = JSON.parse(localStorage.getItem("users") || "[]") as User[];
-    const userExists = users.some((user) => user.email === email);
-
-    if (userExists) {
-      setMessage("Usuário já cadastrado!");
-    } else {
-      const newUser: User = { email, password, name };
-      users.push(newUser);
-      localStorage.setItem("users", JSON.stringify(users));
-      setMessage("Conta criada com sucesso!");
+    try {
+      const response = await createUser({ username: name, email, password });
+      if (response.ok) {
+        setMessage("Conta criada com sucesso!");
+      } else {
+        setMessage("Erro ao criar conta!");
+      }
+    } catch (error) {
+      setMessage("Erro ao conectar com o servidor!");
     }
   };
 
@@ -73,7 +68,7 @@ const Modal = forwardRef<ModalHandle, ModalProps>(({ onClose }, ref) => {
         <button className={styles.closeButton} onClick={onClose}>
           &times;
         </button>
-        <img className={styles.img} src={IlustraçãoLogin} alt="Imagem de login" />
+        <img className={styles.img} src={IlustracaoLogin} alt="Imagem de login" />
         <h2 className={styles.h2}>Preencha os campos abaixo para criar sua conta corrente!</h2>
         <form className={styles.form} onSubmit={handleSubmit}>
           <label>Nome</label>

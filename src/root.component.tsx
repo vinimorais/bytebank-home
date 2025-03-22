@@ -1,25 +1,27 @@
-// src/ReactApp.tsx
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './store/store'; 
+import PrivateRoute from "./assets/components/Private-Route/privateRoute";
 import Home from './assets/components/Home/Home';
 import Layout from './assets/components/Layout/Layout';
 import MainPage from './assets/components/Main-Page/MainPage';
 import Dashboard from './assets/components/Dashboard/Dashboard';
-// import About from './components/About';
 
-// Este será o componente que exportamos para o single-spa
 const ReactApp: React.FC = () => {
   return (
-    <Router>
-      <Layout>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/main"component={MainPage} />
-        <Route exact path="/dash"component={Dashboard} />
-        {/* <Route path="/about" component={About} /> */}
-      </Switch>
-      </Layout>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <Layout>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <PrivateRoute  path="/main" component={MainPage} />
+            <PrivateRoute  path="/dash" component={Dashboard} />
+            {/* <Route path="/about" component={About} /> */}
+          </Switch>
+        </Layout>
+      </Router>
+    </Provider>
   );
 };
 

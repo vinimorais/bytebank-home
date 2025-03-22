@@ -2,7 +2,9 @@
 
 import React, { useState } from 'react';
 import styles from './Login.module.scss'; 
-import IlustraçãoCadastro from '../../../../public/Ilustração_cadastro.svg'
+import IlustracaoCadastro from '../../../../public/Ilustração_cadastro.svg';
+import { authenticateUser } from '../../../services/user.service';
+
 interface ModalProps {
   onClose: () => void; 
 }
@@ -12,38 +14,31 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
 
- 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
-
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
 
-
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    const users = JSON.parse(localStorage.getItem('users') || '[]');
-    const user = users.find((user: { email: string; password: string }) => user.email === email && user.password === password);
-
-    if (user) {
-      setMessage('Login bem-sucedido!');
-      window.location.href = '/main'; 
-    } else {
-      setMessage('Usuário ou senha inválidos!');
+    try {
+      const response = await authenticateUser(email, password);
+      localStorage.setItem("token", response.result.token);
+      setMessage("Login bem-sucedido!");
+      window.location.href = "/dash"
+    } catch (error) {
+      setMessage("Usuário ou senha inválidos!");
     }
   };
 
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modalContent}>
-        <button className={styles.closeButton} onClick={onClose}>
-          &times;
-        </button>
-        <img className={styles.img} src={IlustraçãoCadastro} alt="Imagem de login" />
+        <button className={styles.closeButton} onClick={onClose}>&times;</button>
+        <img className={styles.img} src={IlustracaoCadastro} alt="Imagem de login" />
         <h2 className={styles.h2}>Login</h2>
         <form className={styles.form} onSubmit={handleLogin}>
           <label>Email</label>
@@ -64,9 +59,7 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
             onChange={handlePasswordChange}
             required
           />
-          <button type="submit" className={styles.submitButton}>
-            Entrar
-          </button>
+          <button type="submit" className={styles.submitButton}>Entrar</button>
           {message && <p className={styles.message}>{message}</p>}
         </form>
       </div>

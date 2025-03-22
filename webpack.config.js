@@ -9,16 +9,15 @@ module.exports = (webpackConfigEnv, argv) => {
     argv,
   });
 
-  // Adicionando suporte para SCSS
   return merge(defaultConfig, {
     module: {
       rules: [
         {
-          test: /\.scss$/, // Procura por arquivos .scss
+          test: /\.scss$/,
           use: [
-            "style-loader",  // Adiciona CSS ao DOM
-            "css-loader",    // Processa arquivos CSS
-            "sass-loader",   // Compila SCSS para CSS
+            "style-loader",  
+            "css-loader",    
+            "sass-loader",   
           ],
         },
       ],
