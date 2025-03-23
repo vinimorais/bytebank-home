@@ -14,8 +14,9 @@ const ReactApp: React.FC = () => {
       <Router>
         <Layout>
           <Switch>
+          <Route exact path="/home" component={Home} />
             <Route exact path="/" component={Home} />
-            <PrivateRoute path="/main" component={MainPage} />
+            <Route path="/main" component={MainPage} />
             <PrivateRoute path="/dash" component={Dashboard} />
             {/* <Route path="/about" component={About} /> */}
           </Switch>

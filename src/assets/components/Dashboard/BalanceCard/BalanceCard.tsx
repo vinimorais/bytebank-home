@@ -8,7 +8,12 @@ const BalanceCard: React.FC = () => {
   return (
     <div className={styles.balanceCard}>
       <p className={styles.greeting}> {username || "Usuário"}! :)</p>
-      <p className={styles.date}>Quinta-feira, 08/09/2024</p>
+      <p className={styles.date}>  {new Date().toLocaleDateString("pt-BR", {
+          weekday: "long",
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+        })}</p>
       <div className={styles.balanceHeader}>
         <span>Saldo</span>
       </div>

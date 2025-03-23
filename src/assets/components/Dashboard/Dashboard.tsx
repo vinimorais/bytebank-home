@@ -9,13 +9,31 @@ import { useAuth } from "../../hooks/useAuth";
 
 const Dashboard: React.FC = () => {
   const [activeTab, setActiveTab] = useState("Início");
-  const { username } = useAuth();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const { username, logout } = useAuth();
+
+  const toggleMenu = () => {
+    setMenuOpen((prev) => !prev);
+  };
+
   return (
     <div className={styles.dashboard}>
       <div className={styles.topBar}>
-        <span className={styles.userName}> {username || "Usuário"}</span>
-        <div className={styles.userIcon}>
+        <span className={styles.userName}>{username || "Usuário"}</span>
+
+        <div className={styles.userIcon} onClick={toggleMenu} style={{ cursor: "pointer", position: "relative" }}>
           <span>👤</span>
+
+          {menuOpen && (
+           <div className={styles.userMenu}>
+             <span className={styles.closeIcon} onClick={toggleMenu}>✖</span>
+             <ul>
+                <li>Minha conta</li>
+                <li>Configurações</li>
+                <li onClick={logout}>Sair</li>
+              </ul>
+           </div>
+                       )}
         </div>
       </div>
 

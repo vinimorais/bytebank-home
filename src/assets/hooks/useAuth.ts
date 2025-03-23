@@ -10,9 +10,16 @@ export const useAuth = () => {
       setUsername(getUserName());
       setAuthenticated(true);
     } else {
-      logout();
+      handleLogout();
     }
   }, []);
 
-  return { username, authenticated };
+  const handleLogout = () => {
+    logout();
+    setUsername(null);
+    setAuthenticated(false);
+    window.location.reload();
+  };
+
+  return { username, authenticated, logout: handleLogout };
 };
