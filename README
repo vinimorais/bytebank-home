@@ -1,0 +1,83 @@
+# Dockerfile para Aplicação Node.js
+
+## Visão Geral
+Este `Dockerfile` define a construção de uma imagem Docker para uma aplicação Node.js. A aplicação será executada dentro de um contêiner e exposta na porta 8200.
+
+## Estrutura do Dockerfile
+
+### 1. Imagem Base
+```dockerfile
+FROM node:18.20
+```
+A imagem oficial do Node.js na versão `18.20` é utilizada como base.
+
+### 2. Definição do Diretório de Trabalho
+```dockerfile
+WORKDIR /app
+```
+Define `/app` como o diretório onde os arquivos da aplicação serão armazenados dentro do contêiner.
+
+### 3. Cópia dos Arquivos de Dependências
+```dockerfile
+COPY package*.json .
+```
+Copia apenas os arquivos `package.json` e `package-lock.json` (caso exista) para o contêiner. Isso otimiza o cache do Docker e evita a reinstalação desnecessária de pacotes.
+
+### 4. Instalação das Dependências
+```dockerfile
+RUN npm install
+```
+Executa `npm install` para instalar todas as dependências da aplicação.
+
+### 5. Cópia do Código Fonte
+```dockerfile
+COPY . .
+```
+Copia todos os arquivos da aplicação para dentro do contêiner.
+
+### 6. Exposição de Porta
+```dockerfile
+EXPOSE 8200
+```
+Define que o contêiner irá expor a porta `8200`, permitindo que a aplicação seja acessada externamente.
+
+### 7. Comando de Inicialização
+```dockerfile
+ENTRYPOINT ["npm"]
+CMD ["start", "--", "--port", "8200"]
+```
+- `ENTRYPOINT ["npm"]` define que o comando principal será `npm`.
+- `CMD ["start", "--", "--port", "8200"]` especifica os argumentos para `npm`, iniciando a aplicação e garantindo que ela rode na porta 8200.
+
+## Como Construir e Rodar o Contêiner
+
+### 1. Construção da Imagem
+No diretório onde o `Dockerfile` está localizado, execute:
+```sh
+docker build -t minha-aplicacao .
+```
+Isso criará uma imagem Docker chamada `minha-aplicacao`.
+
+### 2. Execução do Contêiner
+Para iniciar o contêiner baseado na imagem construída:
+```sh
+docker run -p 8200:8200 minha-aplicacao
+```
+Isso vincula a porta `8200` do contêiner à porta `8200` do host.
+
+### 3. Parada do Contêiner
+Se necessário, liste os contêineres em execução:
+```sh
+docker ps
+```
+E pare o contêiner usando:
+```sh
+docker stop <CONTAINER_ID>
+```
+
+## Considerações
+- Certifique-se de que o `package.json` contém um script `"start"` corretamente configurado.
+- Caso precise modificar a porta, altere tanto o `EXPOSE` quanto o comando `CMD` no Dockerfile.
+- Utilize volumes (`-v`) ao rodar o contêiner para persistir mudanças no código durante o desenvolvimento.
+
+Se precisar de mais alguma melhoria, só avisar! 🚀
